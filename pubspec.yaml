@@ -37,7 +37,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   motion: ^1.4.0
   google_fonts: ^5.0.0
-  flutter_displaymode: ^0.6.0
+  sliver_tools: ^0.2.12
+  animations: ^2.0.8
+  flutter_screenutil: ^5.9.0
+  get: ^5.0.0-release-candidate-5
+  dismissible_page: ^1.0.2
 
 dev_dependencies:
   flutter_test:
