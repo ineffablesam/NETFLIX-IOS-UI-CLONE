@@ -12,6 +12,7 @@ class FeaturedCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
+      clipBehavior: Clip.antiAlias,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
@@ -25,19 +26,20 @@ class FeaturedCard extends StatelessWidget {
         ),
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(
             height: 160,
           ),
           OpenContainer(
             closedElevation: 0,
-            middleColor: const Color(0xFF000000),
-            closedColor: const Color(0xFF000000),
-            openColor: const Color(0xFF000000),
+            middleColor: Colors.transparent,
+            closedColor: Colors.transparent,
+            openColor: Colors.transparent,
+            clipBehavior: Clip.none,
             transitionType: ContainerTransitionType.fade,
             closedShape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(13))),
-            clipBehavior: Clip.hardEdge,
             closedBuilder: (BuildContext context, VoidCallback openContainer) {
               return CustomTap(
                 end: 0.99,
