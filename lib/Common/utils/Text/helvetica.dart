@@ -1,29 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class Helvetica {
+class Nunito {
   static TextStyle body({
     required Color color,
     required double fontSize,
     required FontWeight fontWeight,
   }) {
-    return TextStyle(
-      fontFamily: 'helvetica',
+    return GoogleFonts.nunitoSans(
       color: color,
       fontSize: fontSize,
       fontWeight: fontWeight,
-    );
-  }
-
-  static TextStyle header({
-    required Color color,
-    required double fontSize,
-    required FontWeight fontWeight,
-  }) {
-    return TextStyle(
-      fontFamily: 'helvetica',
-      color: color,
-      fontSize: fontSize,
-      fontWeight: FontWeight.w800,
     );
   }
 }

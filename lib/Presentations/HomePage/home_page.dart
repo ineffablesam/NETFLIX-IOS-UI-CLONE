@@ -1,84 +1,156 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:motion/motion.dart';
+import 'package:netflixui/Common/utils/custom_tap.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 
+import '../../Common/utils/Text/helvetica.dart';
 import 'Components/build_sections.dart';
 import 'Components/featured_card.dart';
 import 'Components/frosted_appbar.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
+      extendBody: false,
       backgroundColor: const Color(0xFF000000),
       extendBodyBehindAppBar: true,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: SlideInUp(
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 80.h),
+          child: Container(
+            height: 40.h,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade900,
+              borderRadius: BorderRadius.circular(30),
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CustomTap(
+                  onTap: () {
+                    HapticFeedback.selectionClick();
+                  },
+                  child: Text(
+                    "TV Shows",
+                    style: Nunito.body(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                VerticalDivider(
+                  color: Colors.grey.shade800,
+                  thickness: 0.5,
+                ),
+                CustomTap(
+                  onTap: () {
+                    HapticFeedback.selectionClick();
+                  },
+                  child: Text(
+                    "Movies",
+                    style: Nunito.body(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                VerticalDivider(
+                  color: Colors.grey.shade800,
+                  thickness: 0.5,
+                ),
+                CustomTap(
+                  onTap: () {
+                    HapticFeedback.selectionClick();
+                  },
+                  child: Text(
+                    "Categories",
+                    style: Nunito.body(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(130),
         child: Stack(
           children: [
             FrostedAppBar(
-              blurStrengthX: 8,
-              blurStrengthY: 8,
-              title: const Text(
+              sigmaX: 30.7,
+              sigmaY: 30.7,
+              title: Text(
                 'For Samuel Philip',
-                style: TextStyle(
-                    fontFamily: "helvetica", fontSize: 20, color: Colors.white),
+                style: Nunito.body(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 20,
+                    color: Colors.white),
               ),
-              height: 130,
+              height: 85.h,
               actions: const [
                 Icon(
                   Icons.search,
                   color: Colors.white,
                 )
               ],
-              color: Colors.black.withOpacity(0.1),
-              leading: const Text(""),
+              color: Colors.transparent,
             ),
           ],
         ),
       ),
-      body: const CustomScrollView(
-        physics: ClampingScrollPhysics(),
+      body: CustomScrollView(
+        physics: const ClampingScrollPhysics(),
         slivers: [
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                SingleChildScrollView(
-                  physics: ClampingScrollPhysics(),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      FeaturedCard(),
-                      buildSectionTitle(
-                        title: "Continue Watching for Samuel Philip",
-                      ),
-                      BuildHorizontalSlider(),
-                      buildSectionTitle(
-                        title: "Trending Now",
-                      ),
-                      BuildHorizontalSlider(),
-                      buildSectionTitle(
-                        title: "New Releases",
-                      ),
-                      BuildHorizontalSlider(),
+          SliverStack(
+            children: const [
+              SliverToBoxAdapter(
+                child: Column(
+                  children: [
+                    SingleChildScrollView(
+                      physics: ClampingScrollPhysics(),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          FeaturedCard(),
+                          buildSectionTitle(
+                            title: "Continue Watching for Samuel Philip",
+                          ),
+                          BuildHorizontalSlider(),
+                          buildSectionTitle(
+                            title: "Trending Now",
+                          ),
+                          BuildHorizontalSlider(),
+                          buildSectionTitle(
+                            title: "New Releases",
+                          ),
+                          BuildHorizontalSlider(),
 
-                      // Footer Padding
-                      SizedBox(
-                        height: 40,
-                      )
-                    ],
-                  ),
+                          // Footer Padding
+                          SizedBox(
+                            height: 40,
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           )
         ],
       ),

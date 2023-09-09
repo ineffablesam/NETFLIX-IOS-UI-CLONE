@@ -1,158 +1,96 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:netflixui/Common/utils/Text/helvetica.dart';
 
 import '../../../Common/utils/custom_tap.dart';
 
 class FrostedAppBar extends StatelessWidget {
   final double height;
   final Widget title;
-  final Widget leading;
   final List<Widget> actions;
   final Color color;
-  final double blurStrengthX;
-  final double blurStrengthY;
+  final double sigmaX;
+  final double sigmaY;
   const FrostedAppBar({
     super.key,
     required this.height,
     required this.actions,
-    required this.blurStrengthX,
-    required this.blurStrengthY,
     required this.color,
-    required this.leading,
     required this.title,
+    required this.sigmaX,
+    required this.sigmaY,
   });
   //
   @override
   Widget build(BuildContext context) {
-    var scrSize = MediaQuery.of(context).size;
     return ClipRect(
       child: BackdropFilter(
         filter: ImageFilter.blur(
-          sigmaX: 16.7,
-          sigmaY: 16.7,
+          sigmaX: sigmaX,
+          sigmaY: sigmaY,
+          tileMode: TileMode.repeated,
         ),
         child: Container(
-          color: color, //test
+          color: color,
           alignment: Alignment.center,
-          width: scrSize.width,
-          height: height ?? 80,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 16,
-                    color: Colors.transparent,
-                    child: leading,
-                  ),
-                  Expanded(
-                    child: title ?? Container(),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: actions ??
-                          [
-                            Container(
-                              width: 50,
-                            )
-                          ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+          width: double.infinity,
+          height: height,
+          child: Padding(
+            padding: EdgeInsets.only(
+              right: 20.w,
+              left: 10.w,
+              top: 20.h,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CustomTap(
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border:
-                                Border.all(width: 0.7, color: Colors.white60)),
-                        child: Text(
-                          "Tv Shows",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: "helvetica",
-                          ),
-                        ),
-                      ),
+                    10.horizontalSpace,
+                    Expanded(
+                      child: title,
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    CustomTap(
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border:
-                                Border.all(width: 0.7, color: Colors.white60)),
-                        child: Text(
-                          "Movies",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: "helvetica",
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    CustomTap(
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border:
-                                Border.all(width: 0.7, color: Colors.white60)),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Categories",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                                fontFamily: "helvetica",
-                              ),
-                            ),
-                            Icon(
-                              Icons.keyboard_arrow_down_rounded,
-                              color: Colors.white,
-                              size: 20,
-                            )
-                          ],
-                        ),
-                      ),
-                    )
+                    ...actions
                   ],
                 ),
-              )
-            ],
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class BuildAppBarButtons extends StatelessWidget {
+  final String title;
+  final VoidCallback onTap;
+  const BuildAppBarButtons({
+    super.key,
+    required this.title,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomTap(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.r),
+            border: Border.all(width: 1.w, color: Colors.white60)),
+        child: Text(
+          title,
+          style: Nunito.body(
+            color: Colors.white,
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w800,
           ),
         ),
       ),

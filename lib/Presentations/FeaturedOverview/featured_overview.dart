@@ -1,7 +1,39 @@
+import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter/material.dart';
 
-class FeaturedOverview extends StatelessWidget {
+class FeaturedOverview extends StatefulWidget {
   const FeaturedOverview({super.key});
+
+  @override
+  State<FeaturedOverview> createState() => _FeaturedOverviewState();
+}
+
+class _FeaturedOverviewState extends State<FeaturedOverview> {
+  late BccmPlayerController playerController;
+
+  @override
+  void initState() {
+    // You can also use the global "primary" controller: BccmPlayerController.primary;
+    // The primary player has superpowers like notification player, background playback, casting, etc.
+    playerController = BccmPlayerController(
+      MediaItem(
+        url:
+            'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/main.m3u8',
+        mimeType: 'application/x-mpegURL',
+        metadata: MediaMetadata(title: 'Apple advanced (HLS/HDR)'),
+      ),
+    );
+    playerController.initialize().then((_) {
+      playerController.setPrimary();
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    playerController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +70,22 @@ class FeaturedOverview extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            actions: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.info,
+                  color: Colors.white,
+                ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.share,
+                  color: Colors.white,
+                ),
+              ),
+            ],
             leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -86,8 +134,15 @@ class FeaturedOverview extends StatelessWidget {
           SliverToBoxAdapter(
               child: Column(
             children: [
-              // create layout for testing scroll
-
+              BccmPlayerView(
+                playerController,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  playerController.setPrimary();
+                },
+                child: const Text('Make primary'),
+              ),
               Container(
                 height: 1000,
                 color: const Color(0xFF000000),

@@ -40,8 +40,11 @@ dependencies:
   sliver_tools: ^0.2.12
   animations: ^2.0.8
   flutter_screenutil: ^5.9.0
-  get: ^5.0.0-release-candidate-5
+  get: ^4.6.6
   dismissible_page: ^1.0.2
+  bccm_player: ^1.1.2
+  logger: ^2.0.2
+  animate_do: ^3.1.2
 
 dev_dependencies:
   flutter_test:

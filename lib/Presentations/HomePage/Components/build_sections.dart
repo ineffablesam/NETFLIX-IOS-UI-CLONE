@@ -71,10 +71,10 @@ class buildSectionTitle extends StatelessWidget {
         children: [
           Text(
             title,
-            style: Helvetica.body(
+            style: Nunito.body(
                 color: Colors.white,
                 fontSize: 17.sp,
-                fontWeight: FontWeight.normal),
+                fontWeight: FontWeight.w700),
           ),
         ],
       ),
