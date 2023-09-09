@@ -85,17 +85,17 @@ flutter:
   fonts:
     - family: helvetica
       fonts:
-        - asset: assets/fonts/Helvetica Neu Bold.ttf
+        - asset: assets/fonts/HelveticaNeuBold.ttf
           weight: 800
         - asset: assets/fonts/HelveticaNeue BlackCond.ttf
           weight: 400
-        - asset: assets/fonts/HelveticaNeue Light.ttf
+        - asset: assets/fonts/HelveticaNeueLight.ttf
           weight: 100
-        - asset: assets/fonts/HelveticaNeue Medium.ttf
+        - asset: assets/fonts/HelveticaNeueMedium.ttf
           weight: 200
-        - asset: assets/fonts/HelveticaNeue-Bold.ttf
+        - asset: assets/fonts/HelveticaNeueBold.ttf
           weight: 900
-        - asset: assets/fonts/HelveticaNeue-Regular.ttf
+        - asset: assets/fonts/HelveticaNeueRegular.ttf
           weight: 500
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

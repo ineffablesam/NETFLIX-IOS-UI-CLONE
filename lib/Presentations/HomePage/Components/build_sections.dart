@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:netflixui/Common/utils/Text/helvetica.dart';
 
 import '../../../Common/utils/custom_tap.dart';
 
@@ -12,9 +14,9 @@ class BuildHorizontalSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: 170.h,
       child: Padding(
-        padding: const EdgeInsets.only(left: 30),
+        padding: EdgeInsets.only(left: 10.w),
         child: ListView.builder(
           clipBehavior: Clip.none,
           scrollDirection: Axis.horizontal,
@@ -22,10 +24,9 @@ class BuildHorizontalSlider extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (context, int i) {
-            // Generate a random number between 1 and 100 to use as a seed for the image URL
             final randomNumber = Random().nextInt(100) + 1;
             final imageUrl =
-                "https://picsum.photos/200/300?random=$randomNumber";
+                "https://picsum.photos/200/300?random=$randomNumber&grayscale";
 
             return CustomTap(
               end: 0.97,
@@ -65,13 +66,15 @@ class buildSectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 20),
+      padding: EdgeInsets.symmetric(vertical: 13.h, horizontal: 7.w),
       child: Row(
         children: [
           Text(
             title,
-            style:
-                const TextStyle(fontFamily: "helvetica", color: Colors.white),
+            style: Helvetica.body(
+                color: Colors.white,
+                fontSize: 17.sp,
+                fontWeight: FontWeight.normal),
           ),
         ],
       ),
