@@ -46,6 +46,7 @@ dependencies:
   logger: ^2.0.2
   animate_do: ^3.1.2
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

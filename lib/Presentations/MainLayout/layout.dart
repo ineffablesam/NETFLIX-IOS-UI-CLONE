@@ -52,7 +52,7 @@ class Layout extends StatelessWidget {
                     tileMode: TileMode.repeated,
                   ),
                   child: Container(
-                    // height: 69.h,
+                    height: 69.h,
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.6),
                       borderRadius: BorderRadius.circular(0),
@@ -83,15 +83,13 @@ class Layout extends StatelessWidget {
                         showUnselectedLabels: true,
                         enableFeedback: true,
                         type: BottomNavigationBarType.fixed,
-                        items: [
+                        items: const [
                           BottomNavigationBarItem(
                             icon: Icon(
                               Icons.home_outlined,
-                              size: 20.sp,
                             ),
                             activeIcon: Icon(
                               Icons.home,
-                              size: 20.sp,
                             ),
                             label: 'Explore',
                             tooltip: '',
@@ -99,11 +97,9 @@ class Layout extends StatelessWidget {
                           BottomNavigationBarItem(
                             icon: Icon(
                               Icons.search_outlined,
-                              size: 20.sp,
                             ),
                             activeIcon: Icon(
                               Icons.search,
-                              size: 20.sp,
                             ),
                             label: 'Search',
                             tooltip: '',
@@ -111,11 +107,9 @@ class Layout extends StatelessWidget {
                           BottomNavigationBarItem(
                             icon: Icon(
                               Icons.account_circle_outlined,
-                              size: 20.sp,
                             ),
                             activeIcon: Icon(
                               Icons.account_circle,
-                              size: 20.sp,
                             ),
                             label: 'Account',
                             tooltip: '',

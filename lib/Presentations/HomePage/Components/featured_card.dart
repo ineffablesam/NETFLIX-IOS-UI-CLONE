@@ -2,9 +2,10 @@ import 'package:animate_do/animate_do.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:motion/motion.dart';
 
-import '../../../Common/utils/custom_tap.dart';
+import '../../../Infrastructure/Controllers/featured_card_controller.dart';
 import '../../FeaturedOverview/featured_overview.dart';
 
 class FeaturedCard extends StatelessWidget {
@@ -12,37 +13,39 @@ class FeaturedCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final FeaturedCardController controller = Get.put(FeaturedCardController());
     return Container(
       alignment: Alignment.topCenter,
       width: double.infinity,
-      height: 470.h,
+      height: 510.h,
       child: Stack(
         alignment: Alignment.topCenter,
         fit: StackFit.expand,
         children: [
           FadeInDownBig(
-            animate: true,
-            child: Container(
-              alignment: Alignment.center,
-              width: 330,
-              clipBehavior: Clip.antiAlias,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: FractionalOffset.bottomCenter,
-                  colors: [
-                    Color(0xe5c41313),
-                    Colors.transparent,
-                  ],
-                  stops: [0, 0.99],
+              animate: true,
+              child: Obx(
+                () => Container(
+                  alignment: Alignment.center,
+                  width: 330,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: FractionalOffset.bottomCenter,
+                      colors: [
+                        controller.backgroundColor.value,
+                        Colors.transparent,
+                      ],
+                      stops: [0, 0.99],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
+              )),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              75.verticalSpace,
+              90.verticalSpace,
               OpenContainer(
                 closedElevation: 0,
                 middleColor: Colors.transparent,
@@ -54,95 +57,29 @@ class FeaturedCard extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(13))),
                 closedBuilder:
                     (BuildContext context, VoidCallback openContainer) {
-                  return CustomTap(
-                    end: 0.99,
-                    child: Motion.elevated(
-                      glare: true,
-                      elevation: 70,
-                      controller: MotionController(
-                        damping: 0.7,
-                      ),
-                      borderRadius: BorderRadius.circular(13),
-                      child: Stack(
-                        children: [
-                          Container(
-                            width: 330,
-                            height: 470,
-                            decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: Colors.white38, width: 0.3),
-                              image: const DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image:
-                                      AssetImage("assets/images/power.jpeg")),
-                              color: const Color(0xff2f2c30),
-                              borderRadius: BorderRadius.circular(13),
-                            ),
+                  return Motion.elevated(
+                    glare: true,
+                    elevation: 70,
+                    controller: MotionController(
+                      damping: 0.7,
+                    ),
+                    borderRadius: BorderRadius.circular(13),
+                    child: Stack(
+                      children: [
+                        Container(
+                          width: 290.w,
+                          height: 390.h,
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(color: Colors.white38, width: 0.3.h),
+                            image: const DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage("assets/images/power.jpeg")),
+                            color: const Color(0xff2f2c30),
+                            borderRadius: BorderRadius.circular(13.r),
                           ),
-                          Positioned(
-                            bottom: 30,
-                            right: 10,
-                            left: 10,
-                            child: Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 42, vertical: 5),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: const Row(
-                                    children: [
-                                      Icon(
-                                        Icons.play_arrow,
-                                        color: Colors.black,
-                                        size: 30,
-                                      ),
-                                      SizedBox(width: 3),
-                                      Text(
-                                        'Play',
-                                        style: TextStyle(
-                                          fontFamily: "Nunito",
-                                          fontSize: 15,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 32, vertical: 5),
-                                  decoration: BoxDecoration(
-                                      color: const Color(0xEA101010),
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: const Row(
-                                    children: [
-                                      Icon(
-                                        Icons.check,
-                                        color: Colors.white,
-                                        size: 30,
-                                      ),
-                                      SizedBox(width: 3),
-                                      Text(
-                                        'My List',
-                                        style: TextStyle(
-                                          fontFamily: "Nunito",
-                                          fontSize: 15,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   );
                 },

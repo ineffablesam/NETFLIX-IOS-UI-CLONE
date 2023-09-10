@@ -1,15 +1,19 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:motion/motion.dart';
 import 'package:netflixui/Common/utils/custom_tap.dart';
+import 'package:netflixui/Infrastructure/Controllers/featured_card_controller.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../Common/utils/Text/helvetica.dart';
 import 'Components/build_sections.dart';
 import 'Components/featured_card.dart';
 import 'Components/frosted_appbar.dart';
+import 'category_sheet.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -70,6 +74,11 @@ class HomePage extends StatelessWidget {
                 ),
                 CustomTap(
                   onTap: () {
+                    context.pushTransparentRoute(
+                      const CategoryPage(
+                        imagePath: "assets/images/dart-poster.webp",
+                      ),
+                    );
                     HapticFeedback.selectionClick();
                   },
                   child: Text(
@@ -101,11 +110,20 @@ class HomePage extends StatelessWidget {
                     color: Colors.white),
               ),
               height: 85.h,
-              actions: const [
+              actions: [
                 Icon(
                   Icons.search,
                   color: Colors.white,
-                )
+                ),
+                10.horizontalSpace,
+                IconButton(
+                    onPressed: () {
+                      Get.find<FeaturedCardController>().generateRandomColor();
+                    },
+                    icon: Icon(
+                      Icons.color_lens,
+                      color: Colors.white,
+                    )),
               ],
               color: Colors.transparent,
             ),

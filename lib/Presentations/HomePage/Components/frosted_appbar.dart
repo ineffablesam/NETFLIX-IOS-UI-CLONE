@@ -30,7 +30,7 @@ class FrostedAppBar extends StatelessWidget {
         filter: ImageFilter.blur(
           sigmaX: sigmaX,
           sigmaY: sigmaY,
-          tileMode: TileMode.repeated,
+          tileMode: TileMode.clamp,
         ),
         child: Container(
           color: color,
